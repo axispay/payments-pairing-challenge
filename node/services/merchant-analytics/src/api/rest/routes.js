@@ -1,0 +1,1 @@
+const express=require('express');const makeHandlers=require('./handlers');function createRouter(svc){const r=express.Router(),h=makeHandlers(svc);r.get('/health',h.health);r.post('/transactions',h.createTransaction);r.get('/merchants/:id/daily-totals',h.totals);r.use((e,req,res,next)=>res.status(500).json({error:e.message}));return r}module.exports={createRouter};

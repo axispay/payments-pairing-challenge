@@ -1,0 +1,1 @@
+class PaymentRepository{constructor(db){this.collection=db.collection('payments')}async create(p){const r=await this.collection.insertOne(p);p._id=r.insertedId;return p}} module.exports=PaymentRepository;

@@ -1,0 +1,21 @@
+# dependencies / build output
+node_modules/
+target/
+*.jar
+!.mvn/wrapper/*.jar
+bin/
+dist/
+
+# env / secrets
+.env
+.env.*
+
+# IDE / OS
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# logs
+*.log

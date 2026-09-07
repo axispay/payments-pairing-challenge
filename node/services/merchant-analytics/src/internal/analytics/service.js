@@ -1,0 +1,3 @@
+class AnalyticsService{constructor(repo){this.repo=repo}async createTransaction(input){const transaction={merchantId:input.merchantId,amount:Number(input.amount),status:input.status,createdAt:input.createdAt?new Date(input.createdAt):new Date()};await this.repo.create(transaction);return transaction}async dailyTotals(id,date){const start=new Date(`${date}T00:00:00.000Z`),end=new Date(start);end.setUTCDate(end.getUTCDate()+1);const txs=await this.repo.find(id,start,end);const result={total:0,count:0,byStatus:{}};
+  for(const tx of txs){result.total+=Number(tx.amount||0);result.count++;if(tx.status)result.byStatus[tx.status]=(result.byStatus[tx.status]||0)+1}return result}}
+module.exports=AnalyticsService;
